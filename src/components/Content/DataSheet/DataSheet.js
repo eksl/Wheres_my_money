@@ -12,17 +12,26 @@ class DataSheet extends Component {
 
   getTotalIncome = incomeSum => {
     this.setState(state => ({
-      totalIncome: incomeSum,
-      totalSum: state.totalIncome - state.totalExpenses
+      totalIncome: incomeSum
     }));
   };
 
   getTotalExpenses = expensesSum => {
     this.setState(state => ({
-      totalExpenses: expensesSum,
-      totalSum: state.totalIncome - state.totalExpenses
+      totalExpenses: expensesSum
     }));
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      this.state.totalIncome !== prevState.totalIncome ||
+      this.state.totalExpenses !== prevState.totalExpenses
+    ) {
+      this.setState(state => ({
+        totalSum: state.totalIncome - state.totalExpenses
+      }));
+    }
+  }
 
   render() {
     // Templates

@@ -67,11 +67,16 @@ class DataCard extends Component {
       items: newItems,
       viewAddMoney: !state.viewAddMoney
     }));
-
-    if (typeof this.props.getTotal === "function") {
-      this.props.getTotal(totalSum);
-    }
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      this.state.total !== prevState.total &&
+      typeof this.props.getTotal === "function"
+    ) {
+      this.props.getTotal(this.state.total);
+    }
+  }
 
   render() {
     let modal;
