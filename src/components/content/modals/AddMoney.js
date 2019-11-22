@@ -18,7 +18,7 @@ class AddMoney extends Component {
 
   handleButtonClick = () => {
     if (typeof this.props.onAdd === "function") {
-      this.props.onAdd(this.state.category, parseInt(this.state.sum));
+      this.props.onAdd(this.state.category, parseFloat(this.state.sum));
     }
   };
 

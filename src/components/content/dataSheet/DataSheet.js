@@ -1,37 +1,25 @@
 import React, { Component } from "react";
 import "./DataSheet.scss";
-import DataCard from "./DataCard/DataCard";
-import DataSummary from "./DataSummary/DataSummary";
+import DataCard from "./dataCard/DataCard";
+import DataSummary from "./dataSummary/DataSummary";
 
 class DataSheet extends Component {
   state = {
     totalIncome: 0,
-    totalExpenses: 0,
-    totalSum: 0
+    totalExpenses: 0
   };
 
   getTotalIncome = incomeSum => {
-    this.setState(state => ({
+    this.setState({
       totalIncome: incomeSum
-    }));
+    });
   };
 
   getTotalExpenses = expensesSum => {
-    this.setState(state => ({
+    this.setState({
       totalExpenses: expensesSum
-    }));
+    });
   };
-
-  componentDidUpdate(prevProps, prevState) {
-    if (
-      this.state.totalIncome !== prevState.totalIncome ||
-      this.state.totalExpenses !== prevState.totalExpenses
-    ) {
-      this.setState(state => ({
-        totalSum: state.totalIncome - state.totalExpenses
-      }));
-    }
-  }
 
   render() {
     // Templates
@@ -70,8 +58,10 @@ class DataSheet extends Component {
           items={expenses}
           getTotal={this.getTotalExpenses}
         />
-        <h1>{this.state.totalSum}</h1>
-        <DataSummary />
+        <DataSummary
+          totalIncome={this.state.totalIncome}
+          totalExpenses={this.state.totalExpenses}
+        />
       </div>
     );
   }

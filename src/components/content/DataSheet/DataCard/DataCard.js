@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./DataCard.scss";
-import AddCategory from "../../Modals/AddCategory";
-import RemoveCategory from "../../Modals/RemoveCategory";
-import AddMoney from "../../Modals/AddMoney";
+import AddCategory from "../../modals/AddCategory";
+import RemoveCategory from "../../modals/RemoveCategory";
+import AddMoney from "../../modals/AddMoney";
 
 class DataCard extends Component {
   state = {
