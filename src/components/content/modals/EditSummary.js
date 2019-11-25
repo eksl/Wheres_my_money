@@ -28,6 +28,7 @@ class EditSummary extends Component {
     return (
       <div className="edit-summary">
         <h1>Edycja podsumowania (zł)</h1>
+        <label>Stan konta na początku miesiąca:</label>
         <input
           type="number"
           name="begin"
@@ -35,6 +36,7 @@ class EditSummary extends Component {
           onChange={this.handleBeginChange}
           placeholder="np. 1000"
         />
+        <label>Rzeczywisty stan konta:</label>
         <input
           type="number"
           name="current"
@@ -42,7 +44,7 @@ class EditSummary extends Component {
           onChange={this.handleCurrentChange}
           placeholder="np. 1000"
         />
-        <button onClick={this.handleButtonClick}>Dodaj</button>
+        <button onClick={this.handleButtonClick}>Zapisz</button>
       </div>
     );
   }

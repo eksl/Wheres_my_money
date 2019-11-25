@@ -25,6 +25,7 @@ class RemoveCategory extends Component {
           value={this.state.category}
           onChange={this.handleCategoryChange}
         >
+          <option></option>
           {this.state.categories.map(item => (
             <option key={item.title}>{item.title}</option>
           ))}

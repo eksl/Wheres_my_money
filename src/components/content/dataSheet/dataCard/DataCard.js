@@ -50,17 +50,21 @@ class DataCard extends Component {
     }));
   };
 
+  calculateTotalValue = () => {
+    let totalSum = 0;
+    for (let i = 0; i < this.state.items.length; i++) {
+      totalSum += this.state.items[i].sum;
+    }
+    return totalSum;
+  };
+
   // Get data from AddMoney modal component
   onAddMoney = (category, newSum) => {
     let newItems = [...this.state.items];
     let id = newItems.findIndex(el => el.title === category);
     newItems[id].sum += newSum;
 
-    // Calculate total value
-    let totalSum = 0;
-    for (let i = 0; i < this.state.items.length; i++) {
-      totalSum += this.state.items[i].sum;
-    }
+    let totalSum = this.calculateTotalValue();
 
     this.setState(state => ({
       total: totalSum,
@@ -70,6 +74,13 @@ class DataCard extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
+    if (this.state.items.length !== prevState.items.length) {
+      let totalSum = this.calculateTotalValue();
+      this.setState(state => ({
+        total: totalSum
+      }));
+    }
+
     if (
       this.state.total !== prevState.total &&
       typeof this.props.getTotal === "function"
