@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./DataSheet.scss";
 import DataCard from "./dataCard/DataCard";
 import DataSummary from "./dataSummary/DataSummary";
+import ClockDate from "./clockDate/ClockDate";
 
 class DataSheet extends Component {
   state = {
@@ -48,14 +49,15 @@ class DataSheet extends Component {
     return (
       <div className="data-sheet">
         <h2>Data Sheet</h2>
+        <ClockDate />
         <DataCard
           name="Przychody"
-          items={income}
+          template={income}
           getTotal={this.getTotalIncome}
         />
         <DataCard
           name="Wydatki"
-          items={expenses}
+          template={expenses}
           getTotal={this.getTotalExpenses}
         />
         <DataSummary

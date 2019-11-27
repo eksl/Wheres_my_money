@@ -6,12 +6,24 @@ import AddMoney from "../../modals/AddMoney";
 
 class DataCard extends Component {
   state = {
-    items: this.props.items,
+    items: [],
     total: 0,
     viewAddCategory: false,
     viewRemoveCategory: false,
-    viewAddMoney: false
+    viewAddMoney: false,
+    viewEditItems: false
   };
+
+  componentDidMount() {
+    const dataLocal = localStorage.getItem(this.props.name);
+    if (dataLocal === null) {
+      this.setState({ items: this.props.template });
+    } else {
+      this.setState({
+        items: JSON.parse(dataLocal)
+      });
+    }
+  }
 
   // Handling open add category modal
   handleAddItem = () => {
@@ -40,6 +52,21 @@ class DataCard extends Component {
     this.setState(state => ({
       items: state.items.filter(item => item.title !== removeTitle),
       viewRemoveCategory: !state.viewRemoveCategory
+    }));
+  };
+
+  // Handling open edit items modal
+  handleEditItems = () => {
+    this.setState(state => ({
+      viewEditItems: !state.viewEditItems
+    }));
+  };
+
+  // Edit all items with EditItems modal component
+  onEditItems = newItems => {
+    this.setState(state => ({
+      state: newItems,
+      viewEditItems: !state.viewEditItems
     }));
   };
 
@@ -73,6 +100,16 @@ class DataCard extends Component {
     }));
   };
 
+  // Handle reset
+  handleReset = () => {
+    let newItems = [...this.state.items];
+    newItems.forEach(function(element) {
+      element.sum = 0;
+    });
+    let totalSum = this.calculateTotalValue();
+    this.setState({ items: newItems, total: totalSum });
+  };
+
   componentDidUpdate(prevProps, prevState) {
     if (this.state.items.length !== prevState.items.length) {
       let totalSum = this.calculateTotalValue();
@@ -86,6 +123,7 @@ class DataCard extends Component {
       typeof this.props.getTotal === "function"
     ) {
       this.props.getTotal(this.state.total);
+      localStorage.setItem(this.props.name, JSON.stringify(this.state.items));
     }
   }
 
@@ -109,6 +147,7 @@ class DataCard extends Component {
         <button onClick={this.handleAddItem}>+</button>
         <button onClick={this.handleRemoveItem}>-</button>
         <button onClick={this.handleAddMoney}>+</button>
+        <button onClick={this.handleReset}>Reset</button>
         <ul>
           {this.state.items.map(item => (
             <li key={item.title}>
