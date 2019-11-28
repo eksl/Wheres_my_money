@@ -15,7 +15,8 @@ class DataCard extends Component {
   };
 
   componentDidMount() {
-    const dataLocal = localStorage.getItem(this.props.name);
+    const fileName = `${this.props.name}_${this.props.date.month}_${this.props.date.year}`;
+    const dataLocal = localStorage.getItem(fileName);
     if (dataLocal === null) {
       this.setState({ items: this.props.template });
     } else {
@@ -34,10 +35,18 @@ class DataCard extends Component {
 
   // Get data from AddCategory modal component
   onAddItem = newTitle => {
-    this.setState(state => ({
-      items: [...state.items, { title: newTitle, sum: 0 }],
-      viewAddCategory: !state.viewAddCategory
-    }));
+    let doesExist = false;
+    this.state.items.forEach(function(element) {
+      if (newTitle === element.title) {
+        doesExist = true;
+      }
+    });
+    if (!doesExist) {
+      this.setState(state => ({
+        items: [...state.items, { title: newTitle, sum: 0 }],
+        viewAddCategory: !state.viewAddCategory
+      }));
+    }
   };
 
   // Handling open remove category modal
@@ -111,6 +120,22 @@ class DataCard extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
+    if (
+      this.props.name !== prevProps.name ||
+      this.props.date.month !== prevProps.date.month ||
+      this.props.date.year !== prevProps.date.year
+    ) {
+      const fileName = `${this.props.name}_${this.props.date.month}_${this.props.date.year}`;
+      const dataLocal = localStorage.getItem(fileName);
+      if (dataLocal === null) {
+        this.setState({ items: this.props.template });
+      } else {
+        this.setState({
+          items: JSON.parse(dataLocal)
+        });
+      }
+    }
+
     if (this.state.items.length !== prevState.items.length) {
       let totalSum = this.calculateTotalValue();
       this.setState(state => ({
@@ -122,8 +147,9 @@ class DataCard extends Component {
       this.state.total !== prevState.total &&
       typeof this.props.getTotal === "function"
     ) {
+      const fileName = `${this.props.name}_${this.props.date.month}_${this.props.date.year}`;
       this.props.getTotal(this.state.total);
-      localStorage.setItem(this.props.name, JSON.stringify(this.state.items));
+      localStorage.setItem(fileName, JSON.stringify(this.state.items));
     }
   }
 

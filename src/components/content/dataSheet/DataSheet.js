@@ -6,8 +6,16 @@ import ClockDate from "./clockDate/ClockDate";
 
 class DataSheet extends Component {
   state = {
+    date: {
+      month: new Date().getMonth() + 1,
+      year: new Date().getFullYear()
+    },
     totalIncome: 0,
     totalExpenses: 0
+  };
+
+  getDate = (tempMonth, tempYear) => {
+    this.setState({ date: { month: tempMonth, year: tempYear } });
   };
 
   getTotalIncome = incomeSum => {
@@ -49,14 +57,16 @@ class DataSheet extends Component {
     return (
       <div className="data-sheet">
         <h2>Data Sheet</h2>
-        <ClockDate />
+        <ClockDate getDate={this.getDate} />
         <DataCard
           name="Przychody"
+          date={this.state.date}
           template={income}
           getTotal={this.getTotalIncome}
         />
         <DataCard
           name="Wydatki"
+          date={this.state.date}
           template={expenses}
           getTotal={this.getTotalExpenses}
         />
