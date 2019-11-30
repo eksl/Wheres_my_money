@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import "./DataCard.scss";
 import AddCategory from "../../modals/AddCategory";
 import RemoveCategory from "../../modals/RemoveCategory";
+import SwapItems from "../../modals/SwapItems";
 import AddMoney from "../../modals/AddMoney";
+import ConfirmModal from "../../modals/ConfirmModal";
 
 class DataCard extends Component {
   state = {
@@ -10,8 +12,10 @@ class DataCard extends Component {
     total: 0,
     viewAddCategory: false,
     viewRemoveCategory: false,
+    viewSwapItems: false,
     viewAddMoney: false,
-    viewEditItems: false
+    viewEditItems: false,
+    viewConfirmModal: false
   };
 
   componentDidMount() {
@@ -64,18 +68,20 @@ class DataCard extends Component {
     }));
   };
 
-  // Handling open edit items modal
-  handleEditItems = () => {
+  // Handling open swap items modal
+  handleSwapItems = () => {
     this.setState(state => ({
-      viewEditItems: !state.viewEditItems
+      viewSwapItems: !state.viewSwapItems
     }));
   };
 
-  // Edit all items with EditItems modal component
-  onEditItems = newItems => {
+  // Swap items with SwapItems modal component
+  onSwapItems = newItems => {
+    let totalSum = this.calculateTotalValue();
     this.setState(state => ({
-      state: newItems,
-      viewEditItems: !state.viewEditItems
+      items: newItems,
+      total: totalSum,
+      viewSwapItems: !state.viewSwapItems
     }));
   };
 
@@ -96,27 +102,39 @@ class DataCard extends Component {
 
   // Get data from AddMoney modal component
   onAddMoney = (category, newSum) => {
-    let newItems = [...this.state.items];
-    let id = newItems.findIndex(el => el.title === category);
-    newItems[id].sum += newSum;
+    if (newSum > 0) {
+      let newItems = [...this.state.items];
+      let id = newItems.findIndex(el => el.title === category);
+      newItems[id].sum += newSum;
 
-    let totalSum = this.calculateTotalValue();
+      let totalSum = this.calculateTotalValue();
 
-    this.setState(state => ({
-      total: totalSum,
-      items: newItems,
-      viewAddMoney: !state.viewAddMoney
-    }));
+      this.setState(state => ({
+        total: totalSum,
+        items: newItems,
+        viewAddMoney: !state.viewAddMoney
+      }));
+    }
   };
 
   // Handle reset
   handleReset = () => {
+    this.setState(state => ({
+      viewConfirmModal: !state.viewConfirmModal
+    }));
+  };
+
+  onConfirmYes = () => {
     let newItems = [...this.state.items];
     newItems.forEach(function(element) {
       element.sum = 0;
     });
     let totalSum = this.calculateTotalValue();
-    this.setState({ items: newItems, total: totalSum });
+    this.setState(state => ({
+      items: newItems,
+      total: totalSum,
+      viewConfirmModal: !state.viewConfirmModal
+    }));
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -161,8 +179,14 @@ class DataCard extends Component {
       modal = (
         <RemoveCategory items={this.state.items} onRemove={this.onRemoveItem} />
       );
+    } else if (this.state.viewSwapItems) {
+      modal = <SwapItems items={this.state.items} onSwap={this.onSwapItems} />;
     } else if (this.state.viewAddMoney) {
       modal = <AddMoney items={this.state.items} onAdd={this.onAddMoney} />;
+    } else if (this.state.viewConfirmModal) {
+      modal = (
+        <ConfirmModal onYes={this.onConfirmYes} onNo={this.handleReset} />
+      );
     } else {
       modal = null;
     }
@@ -172,6 +196,7 @@ class DataCard extends Component {
         <h3>DataCard -> {this.props.name}</h3>
         <button onClick={this.handleAddItem}>+</button>
         <button onClick={this.handleRemoveItem}>-</button>
+        <button onClick={this.handleSwapItems}>Zmień układ</button>
         <button onClick={this.handleAddMoney}>+</button>
         <button onClick={this.handleReset}>Reset</button>
         <ul>
