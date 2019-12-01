@@ -1,0 +1,43 @@
+button {
+  background-color: $color-dark-background;
+  border: none;
+  border-radius: 0.3125rem;
+  color: $color-white;
+  font-weight: 600;
+  margin: 0.25rem;
+  min-width: 2rem;
+  padding: 0.3125rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+select {
+  background-color: $color-dark-background;
+  border: none;
+  border-radius: 0.3125rem;
+  color: $color-white;
+  font-weight: 600;
+  margin: 0.25rem;
+  padding: 0.3125rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+input {
+  background-color: $color-dark-background;
+  border: none;
+  border-radius: 0.3125rem;
+  color: $color-white;
+  font-weight: 600;
+  margin: 0.25rem;
+  min-width: 2rem;
+  padding: 0.3125rem;
+}
+
+ul {
+  list-style-type: none;
+}

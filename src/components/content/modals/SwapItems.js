@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./SwapItems.scss";
 
 class SwapItems extends Component {
   state = {
@@ -54,7 +53,7 @@ class SwapItems extends Component {
 
   render() {
     return (
-      <div className="remove-category">
+      <div className="remove-category modal">
         <h1>Zamiana miejsc</h1>
         <ul>
           {this.state.newItems.map((item, index) => (

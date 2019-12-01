@@ -1,0 +1,33 @@
+.header {
+  align-items: center;
+  background-color: $color-darkest-background;
+  color: $color-white;
+  display: flex;
+  flex-direction: column;
+  height: 8rem;
+  justify-content: center;
+  padding: 0.5rem;
+
+  .logo {
+    font-size: 2.25rem;
+    margin: 1rem;
+  }
+  .menu {
+    display: flex;
+    font-size: 1.125rem;
+    font-weight: 600;
+    justify-content: space-between;
+    list-style: none;
+    width: 16rem;
+
+    .menu__link {
+      color: $color-white;
+      text-decoration: none;
+    }
+  }
+
+  @media (min-width: $screen-xs) {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}

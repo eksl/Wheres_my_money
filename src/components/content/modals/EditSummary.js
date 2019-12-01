@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./EditSummary.scss";
 
 class EditSummary extends Component {
   state = {
@@ -26,24 +25,29 @@ class EditSummary extends Component {
 
   render() {
     return (
-      <div className="edit-summary">
+      <div className="edit-summary modal">
         <h1>Edycja podsumowania (zł)</h1>
-        <label>Stan konta na początku miesiąca:</label>
-        <input
-          type="number"
-          name="begin"
-          value={this.state.begin}
-          onChange={this.handleBeginChange}
-          placeholder="np. 1000"
-        />
-        <label>Rzeczywisty stan konta:</label>
-        <input
-          type="number"
-          name="current"
-          value={this.state.current}
-          onChange={this.handleCurrentChange}
-          placeholder="np. 1000"
-        />
+        <div>
+          <label>Stan konta na początku miesiąca:</label>
+          <input
+            type="number"
+            name="begin"
+            value={this.state.begin}
+            onChange={this.handleBeginChange}
+            placeholder="np. 1000"
+          />
+        </div>
+        <div>
+          <label>Rzeczywisty stan konta:</label>
+          <input
+            type="number"
+            name="current"
+            value={this.state.current}
+            onChange={this.handleCurrentChange}
+            placeholder="np. 1000"
+          />
+        </div>
+
         <button onClick={this.handleButtonClick}>Zapisz</button>
       </div>
     );

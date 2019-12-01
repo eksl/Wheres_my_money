@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./AddCategory.scss";
 
 class AddCategory extends Component {
   state = {
@@ -18,7 +17,7 @@ class AddCategory extends Component {
 
   render() {
     return (
-      <div className="add-category">
+      <div className="add-category modal">
         <h1>Dodaj kategorię</h1>
         <input
           type="text"

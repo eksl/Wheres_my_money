@@ -1,0 +1,25 @@
+.data-sheet {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 2rem;
+  align-items: center;
+
+  @media (min-width: $screen-sm) {
+    flex-direction: row;
+    justify-content: space-around;
+
+    .data {
+      border-left: 1px solid $color-darkest-background;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      // min-width: 1000px;
+
+      .data-cards {
+        display: flex;
+        flex-direction: row;
+      }
+    }
+  }
+}

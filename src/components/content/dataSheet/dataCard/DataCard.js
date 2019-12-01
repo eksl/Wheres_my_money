@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./DataCard.scss";
 import AddCategory from "../../modals/AddCategory";
 import RemoveCategory from "../../modals/RemoveCategory";
 import SwapItems from "../../modals/SwapItems";
@@ -193,21 +192,24 @@ class DataCard extends Component {
 
     return (
       <div className="data-card">
-        <h3>DataCard -> {this.props.name}</h3>
-        <button onClick={this.handleAddItem}>+</button>
-        <button onClick={this.handleRemoveItem}>-</button>
-        <button onClick={this.handleSwapItems}>Zmień układ</button>
-        <button onClick={this.handleAddMoney}>+</button>
-        <button onClick={this.handleReset}>Reset</button>
+        <h2>{this.props.name}</h2>
+        <div className="buttons">
+          <button onClick={this.handleAddItem}>+</button>
+          <button onClick={this.handleRemoveItem}>-</button>
+          <button onClick={this.handleSwapItems}>Zmień układ</button>
+          <button onClick={this.handleAddMoney}>+</button>
+          <button onClick={this.handleReset}>Reset</button>
+        </div>
+
         <ul>
           {this.state.items.map(item => (
             <li key={item.title}>
-              <label>{item.title} ---> </label>
+              <label>{item.title}: </label>
               <label>{item.sum} zł</label>
             </li>
           ))}
           <li>
-            <label>Podsumowanie ---> </label>
+            <label>Podsumowanie: </label>
             <label>{this.state.total} zł</label>
           </li>
         </ul>

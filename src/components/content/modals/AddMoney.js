@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./AddMoney.scss";
 
 class AddMoney extends Component {
   state = {
@@ -24,7 +23,7 @@ class AddMoney extends Component {
 
   render() {
     return (
-      <div className="add-money">
+      <div className="add-money modal">
         <h1>Dodaj kwotę (zł)</h1>
         <select
           value={this.state.category}

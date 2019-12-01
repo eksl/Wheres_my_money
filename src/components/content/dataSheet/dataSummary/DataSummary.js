@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./DataSummary.scss";
 import EditSummary from "../../modals/EditSummary";
 
 class DataSummary extends Component {
@@ -74,13 +73,13 @@ class DataSummary extends Component {
 
     return (
       <div className="data-summary">
-        <h3>DataSummary</h3>
-        <p>Zarobki - wydatki --> {this.state.total} zł</p>
-        <p>Stan konta na początku miesiąca --> {this.state.begin} zł</p>
-        <p>Symulacja --> {this.state.simulation} zł</p>
-        <p>Rzeczywisty stan konta --> {this.state.current} zł</p>
-        <p>Różnica --> {this.state.difference} zł</p>
-        <button onClick={this.handleEdit}>Edit</button>
+        <h2>Podsumowanie</h2>
+        <p>Zarobki - wydatki: {this.state.total} zł</p>
+        <p>Stan konta na początku miesiąca: {this.state.begin} zł</p>
+        <p>Symulacja: {this.state.simulation} zł</p>
+        <p>Rzeczywisty stan konta: {this.state.current} zł</p>
+        <p>Różnica: {this.state.difference} zł</p>
+        <button onClick={this.handleEdit}>Edytuj</button>
         {modal}
       </div>
     );

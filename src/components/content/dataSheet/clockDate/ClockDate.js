@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./ClockDate.scss";
 
 class ClockDate extends Component {
   state = {
@@ -34,7 +33,7 @@ class ClockDate extends Component {
     let warning = null;
     if (todayDay > 26) {
       warning = (
-        <p>
+        <p className="warning">
           Końcówka miesiąca, pamiętaj o uzupełnieniu informacji o bieżącym
           stanie konta
         </p>
@@ -44,14 +43,18 @@ class ClockDate extends Component {
     }
 
     let today = (
-      <div>
+      <div className="today">
         {todayDay}.{todayMonth}.{todayYear}
         {warning}
       </div>
     );
 
     const month = (
-      <select value={this.state.month} onChange={this.handleMonthChange}>
+      <select
+        className="calendar__month"
+        value={this.state.month}
+        onChange={this.handleMonthChange}
+      >
         <option></option>
         <option>1</option>
         <option>2</option>
@@ -70,6 +73,7 @@ class ClockDate extends Component {
 
     const year = (
       <input
+        className="calendar__year"
         type="number"
         name="year"
         value={this.state.year}
@@ -78,14 +82,16 @@ class ClockDate extends Component {
     );
 
     return (
-      <>
+      <div className="clock-date">
         {today}
-        <div>
+        <div className="calendar">
           {month}
           {year}
-          <button onClick={this.handleButtonClick}>Wybierz</button>
+          <button className="calendar-button" onClick={this.handleButtonClick}>
+            Wybierz
+          </button>
         </div>
-      </>
+      </div>
     );
   }
 }

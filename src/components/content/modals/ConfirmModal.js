@@ -1,5 +1,4 @@
 import React from "react";
-import "./ConfirmModal.scss";
 
 function ConfirmModal(props) {
   const handleButtonYes = () => {
@@ -15,7 +14,7 @@ function ConfirmModal(props) {
   };
 
   return (
-    <div className="confirm-modal">
+    <div className="confirm-modal modal">
       <h1>Na pewno?</h1>
       <button onClick={handleButtonYes}>Tak</button>
       <button onClick={handleButtonNo}>Nie</button>

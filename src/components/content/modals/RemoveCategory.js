@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./RemoveCategory.scss";
 
 class RemoveCategory extends Component {
   state = {
@@ -19,7 +18,7 @@ class RemoveCategory extends Component {
 
   render() {
     return (
-      <div className="remove-category">
+      <div className="remove-category modal">
         <h1>Usuń kategorię</h1>
         <select
           value={this.state.category}

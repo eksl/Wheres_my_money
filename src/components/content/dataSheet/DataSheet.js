@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./DataSheet.scss";
 import DataCard from "./dataCard/DataCard";
 import DataSummary from "./dataSummary/DataSummary";
 import ClockDate from "./clockDate/ClockDate";
@@ -56,24 +55,28 @@ class DataSheet extends Component {
 
     return (
       <div className="data-sheet">
-        <h2>Data Sheet</h2>
         <ClockDate getDate={this.getDate} />
-        <DataCard
-          name="Przychody"
-          date={this.state.date}
-          template={income}
-          getTotal={this.getTotalIncome}
-        />
-        <DataCard
-          name="Wydatki"
-          date={this.state.date}
-          template={expenses}
-          getTotal={this.getTotalExpenses}
-        />
-        <DataSummary
-          totalIncome={this.state.totalIncome}
-          totalExpenses={this.state.totalExpenses}
-        />
+        <div className="data">
+          <div className="data-cards">
+            <DataCard
+              name="Przychody"
+              date={this.state.date}
+              template={income}
+              getTotal={this.getTotalIncome}
+            />
+            <DataCard
+              name="Wydatki"
+              date={this.state.date}
+              template={expenses}
+              getTotal={this.getTotalExpenses}
+            />
+          </div>
+
+          <DataSummary
+            totalIncome={this.state.totalIncome}
+            totalExpenses={this.state.totalExpenses}
+          />
+        </div>
       </div>
     );
   }

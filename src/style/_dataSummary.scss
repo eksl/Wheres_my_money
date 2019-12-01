@@ -1,0 +1,24 @@
+.data-summary {
+  margin: 0 1.5rem 1.5rem 1.5rem;
+  min-width: 19.5rem;
+
+  h2 {
+    margin: 0.5rem;
+    text-align: center;
+  }
+
+  p {
+    font-size: 1.125rem;
+  }
+
+  button {
+    margin: 0.5rem 0;
+  }
+
+  @media (min-width: $screen-sm) {
+    h2 {
+      margin-left: 0;
+      text-align: left;
+    }
+  }
+}

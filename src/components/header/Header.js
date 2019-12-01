@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { HashRouter as Router, NavLink } from "react-router-dom";
-import "./Header.scss";
 
 class Header extends Component {
   render() {
@@ -9,12 +8,16 @@ class Header extends Component {
         <h1 className="logo">Where's my money</h1>
         <Router>
           <nav>
-            <ul>
+            <ul className="menu">
               <li>
-                <NavLink to={"/"}>Strona główna</NavLink>
+                <NavLink className="menu__link" to={"/"}>
+                  Strona główna
+                </NavLink>
               </li>
               <li>
-                <NavLink to={"/About"}>O programie</NavLink>
+                <NavLink className="menu__link" to={"/About"}>
+                  O programie
+                </NavLink>
               </li>
             </ul>
           </nav>
