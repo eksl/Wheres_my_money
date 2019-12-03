@@ -8,6 +8,6 @@ It's home budget app, where user can save incomes and expenses and track his acc
 App was created with React, React Router and Sass.
 
 ## Future of project
-- Connect app with Firebase server (for now data id stored in LocalStorage)
+- Connect app with Firebase server (for now data is stored in LocalStorage)
 - Add registration and login
 - Improve layout
