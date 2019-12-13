@@ -13,4 +13,4 @@ App was created with React, React Router and Sass.
 - Improve layout
 
 ## To improve
-- Store data summary for each month (Why I didn't do it before? :))
+- Store data summary for each month (Why I didn't do it before?)
