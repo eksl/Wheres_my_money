@@ -73,6 +73,7 @@ class DataSheet extends Component {
           </div>
 
           <DataSummary
+            date={this.state.date}
             totalIncome={this.state.totalIncome}
             totalExpenses={this.state.totalExpenses}
           />
