@@ -11,6 +11,20 @@ class DataSummary extends Component {
     viewEditSummary: false
   };
 
+  componentDidMount() {
+    const fileName = `Podsumowanie_${this.props.date.month}_${this.props.date.year}`;
+    const dataLocal = localStorage.getItem(fileName);
+
+    if (dataLocal !== null) {
+      const items = JSON.parse(dataLocal);
+      this.setState({
+        begin: items.begin,
+        current: items.current
+      });
+      console.log(items);
+    }
+  }
+
   handleEdit = () => {
     this.setState(state => ({
       viewEditSummary: !state.viewEditSummary
@@ -26,6 +40,38 @@ class DataSummary extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
+    // Save data to localStorage
+    if (
+      this.state.begin !== prevState.begin ||
+      this.state.current !== prevState.current
+    ) {
+      const fileName = `Podsumowanie_${this.props.date.month}_${this.props.date.year}`;
+      const sum = {
+        begin: this.state.begin,
+        current: this.state.current
+      };
+      localStorage.setItem(fileName, JSON.stringify(sum));
+    }
+
+    // Update data when date is changed
+    if (
+      this.props.date.month !== prevProps.date.month ||
+      this.props.date.year !== prevProps.date.year
+    ) {
+      const fileName = `Podsumowanie_${this.props.date.month}_${this.props.date.year}`;
+      const dataLocal = localStorage.getItem(fileName);
+      if (dataLocal === null) {
+        this.setState({ begin: 0, current: 0 });
+      } else {
+        const items = JSON.parse(dataLocal);
+        this.setState({
+          begin: items.begin,
+          current: items.current
+        });
+        console.log(items);
+      }
+    }
+
     // Calculate income - expenses
     if (
       this.props.totalIncome !== prevProps.totalIncome ||
