@@ -1,6 +1,6 @@
 # ToDo-List
 
-[Link to web app](https://eksl.github.io/wheres_my_money/)
+[Link to web app](https://modest-montalcini-89c466.netlify.com/#/)
 
 It's home budget app, where user can save incomes and expenses and track his account balance.
 
