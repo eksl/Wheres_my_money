@@ -21,12 +21,18 @@ class DataCard extends Component {
     const fileName = `${this.props.name}_${this.props.date.month}_${this.props.date.year}`;
     const dataLocal = localStorage.getItem(fileName);
     if (dataLocal === null) {
-      this.setState({ items: this.props.template });
+      this.setState({
+        items: this.props.template
+      });
     } else {
       this.setState({
         items: JSON.parse(dataLocal)
       });
     }
+    let totalSum = this.calculateTotalValue();
+    this.setState({
+      total: totalSum
+    });
   }
 
   // Handling open add category modal
@@ -145,19 +151,32 @@ class DataCard extends Component {
       const fileName = `${this.props.name}_${this.props.date.month}_${this.props.date.year}`;
       const dataLocal = localStorage.getItem(fileName);
       if (dataLocal === null) {
-        this.setState({ items: this.props.template });
-      } else {
-        this.setState({
-          items: JSON.parse(dataLocal)
+        this.setState({ items: this.props.template }, () => {
+          let totalSum = this.calculateTotalValue();
+          this.setState({
+            total: totalSum
+          });
         });
+      } else {
+        this.setState(
+          {
+            items: JSON.parse(dataLocal)
+          },
+          () => {
+            let totalSum = this.calculateTotalValue();
+            this.setState({
+              total: totalSum
+            });
+          }
+        );
       }
     }
 
     if (this.state.items.length !== prevState.items.length) {
       let totalSum = this.calculateTotalValue();
-      this.setState(state => ({
+      this.setState({
         total: totalSum
-      }));
+      });
     }
 
     if (
