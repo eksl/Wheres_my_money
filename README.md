@@ -11,6 +11,3 @@ App was created with React, React Router and Sass.
 - Connect app with Firebase server (for now data is stored in LocalStorage)
 - Add registration and login
 - Improve layout
-
-## To improve
-- Store data summary for each month (Why I didn't do it before?)
