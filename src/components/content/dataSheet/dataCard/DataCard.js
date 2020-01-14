@@ -29,10 +29,6 @@ class DataCard extends Component {
         items: JSON.parse(dataLocal)
       });
     }
-    let totalSum = this.calculateTotalValue();
-    this.setState({
-      total: totalSum
-    });
   }
 
   // Handling open add category modal
